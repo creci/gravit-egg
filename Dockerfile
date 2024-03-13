@@ -34,9 +34,9 @@ USER        root
 RUN         apt install -y osslsigncode unzip
 
 
-RUN         wget https://download2.gluonhq.com/openjfx/21/openjfx-21_linux-x64_bin-jmods.zip \
-            && unzip openjfx-21_linux-x64_bin-jmods.zip \
-            && sudo cp javafx-jmods-21/* /usr/lib/jvm/temurin-21-jdk-amd64/jmods 
+RUN         wget https://download2.gluonhq.com/openjfx/21/openjfx-21_linux-x64_bin-jmods.zip
+RUN         unzip openjfx-21_linux-x64_bin-jmods.zip
+RUN         cp javafx-jmods-21/* /usr/lib/jvm/temurin-21-jdk-amd64/jmods 
             
 USER        container
             
