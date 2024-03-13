@@ -42,10 +42,9 @@ RUN wget -O - https://packages.adoptium.net/artifactory/api/gpg/key/public | tee
 RUN echo "deb [signed-by=/etc/apt/keyrings/adoptium.asc] https://packages.adoptium.net/artifactory/deb $(awk -F= '/^VERSION_CODENAME/{print$2}' /etc/os-release) main" | tee /etc/apt/sources.list.d/adoptium.list ;
 RUN apt-get update ;
 RUN apt-get install temurin-21-jdk -y ;
-RUN wget https://download2.gluonhq.com/openjfx/21/openjfx-21_linux-x64_bin-jmods.zip ;
-RUN unzip openjfx-21_linux-x64_bin-jmods.zip ;
-RUN cp javafx-jmods-21/* /usr/lib/jvm/temurin-21-jdk-amd64/jmods ;
-RUN rm -r javafx-jmods-21
+ENV JMODS_DIR=/usr/share/openjfx/jmods
+ENV JMODS_URL=https://download2.gluonhq.com/openjfx/21.0.1/openjfx-21.0.1_linux-x64_bin-jmods.zip
+RUN curl -L ${JMODS_URL} -o openjfx.zip             && unzip openjfx.zip && rm openjfx.zip             && mkdir -p ${JMODS_DIR}             && cp javafx-jmods-21.0.1/* /usr/share/openjfx/jmods # buildkit
             
 USER        container
             
