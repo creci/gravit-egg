@@ -38,8 +38,8 @@ RUN         apt install -y osslsigncode unzip
 RUN         apt-get update ;
 RUN         apt-get install gnupg2 wget apt-transport-https unzip -y ;
 RUN         mkdir -p /etc/apt/keyrings ;
-RUN         wget -O - https://packages.adoptium.net/artifactory/api/gpg/key/public | sudo tee /etc/apt/keyrings/adoptium.asc ;
-RUN         echo "deb [signed-by=/etc/apt/keyrings/adoptium.asc] https://packages.adoptium.net/artifactory/deb $(awk -F= '/^VERSION_CODENAME/{print$2}' /etc/os-release) main" | sudo tee /etc/apt/sources.list.d/adoptium.list ;
+RUN         wget -O - https://packages.adoptium.net/artifactory/api/gpg/key/public | tee /etc/apt/keyrings/adoptium.asc ;
+RUN         echo "deb [signed-by=/etc/apt/keyrings/adoptium.asc] https://packages.adoptium.net/artifactory/deb $(awk -F= '/^VERSION_CODENAME/{print$2}' /etc/os-release) main" | tee /etc/apt/sources.list.d/adoptium.list ;
 RUN         apt-get install -y temurin-21-jdK
 RUN         wget https://download2.gluonhq.com/openjfx/21/openjfx-21_linux-x64_bin-jmods.zip
 RUN         unzip openjfx-21_linux-x64_bin-jmods.zip
