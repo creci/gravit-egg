@@ -35,7 +35,7 @@ RUN         apt install -y osslsigncode unzip
 
 
 RUN         apt-get update && apt-get install -y apt-transport-https
-RUN         apt-get update && apt-get install -y temurin-21-jdK
+RUN         apt-get install -y temurin-21-jdK
 RUN         wget https://download2.gluonhq.com/openjfx/21/openjfx-21_linux-x64_bin-jmods.zip
 RUN         unzip openjfx-21_linux-x64_bin-jmods.zip
 RUN         cp javafx-jmods-21/* /usr/lib/jvm/temurin-21-jdk-amd64/jmods
